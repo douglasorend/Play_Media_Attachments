@@ -39,7 +39,7 @@ function PMA_mime_type($filename, $original = false)
 		@fclose($handle);
 		foreach ($signatures as $magic_bytes => $mime_type)
 		{
-			list($mime, $start, $extra) = explode('|', $mime_type . '||', 3);
+			list($mime, $start, $extra) = explode('|', $mime_type . '||');
 			if (substr($contents, 0, strlen($magic_bytes)) == $magic_bytes)
 			{
 				$mime = !empty($start) ? (substr($contents, $start, strlen($extra)) == $extra ? $mime : false) : $mime;
