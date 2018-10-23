@@ -1,3 +1,7 @@
+v2.1 - September 10th, 2017
+o Fixed expired session error upon mod install.
+o Added file signatures and mime types for WMA, WMV and AAC files.
+
 v2.0.1 - September 9th, 2017
 o Fixed another stupid typo in [b]Subs-MediaAttachments.php[/b].
 

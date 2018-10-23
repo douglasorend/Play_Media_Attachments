@@ -1,13 +1,13 @@
 [hr]
-[center][color=red][size=16pt][b]PLAY MEDIA ATTACHMENTS v2.0.1[/b][/size][/color]
+[center][color=red][size=16pt][b]PLAY MEDIA ATTACHMENTS v2.1[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4131]Link to Mod[/url]
 [/center]
 [hr]
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
-This mod allows MP3, WAV, and audio OGG files that has been attached to a post to be played without manually downloading the attachment using the HTML5 audio tag.
+This mod allows MP3, WAV, WMA, AAC, and audio OGG files that has been attached to a post to be played without manually downloading the attachment using the HTML5 audio tag.
 
-This mod also allows a MP4, M4A, M4V, WebM, and video OGG files that has been attached to a post to be played without manually downloading the attachment using the HTML5 video tag.
+This mod also allows a MP4, M4A, M4V, WebM, WMV, and video OGG files that has been attached to a post to be played without manually downloading the attachment using the HTML5 video tag.
 
 Note: [b]OGG[/b] format files are assumed to be video if the extension is [b]OGV[/b].  Detection has yet to be improved upon for determining the difference between audio and video OGG-formatted files.
 
