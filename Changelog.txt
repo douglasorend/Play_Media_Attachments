@@ -1,3 +1,8 @@
+v2.4 - April 28th, 2018
+o Added mime detection for QuickTime (.mov) movies.
+o Added code fragment to exclude mime type from HTML when playing QT movies.
+o Fixed conditional statement so that video embed tag works if needed.
+
 v2.3 - December 15th, 2017
 o Added Spanish Latin translation, courtsey of [url=https://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee[/url]!
 o Added missing add/remove hooks entry for proper mod uninstallation.

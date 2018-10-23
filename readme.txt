@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]PLAY MEDIA ATTACHMENTS v2.3[/b][/size][/color]
+[center][color=red][size=16pt][b]PLAY MEDIA ATTACHMENTS v2.4[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4131]Link to Mod[/url]
 [/center]
 [hr]
@@ -7,7 +7,7 @@
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
 This mod allows MP3, WAV, WMA, AAC, and audio OGG files that has been attached to a post to be played without manually downloading the attachment using the HTML5 audio tag.
 
-This mod also allows a MP4, M4A, M4V, WebM, WMV, and video OGG files that has been attached to a post to be played without manually downloading the attachment using the HTML5 video tag.
+This mod also allows a MP4, M4A, M4V, WebM, WMV, MOV, and video OGG files that has been attached to a post to be played without manually downloading the attachment using the HTML5 video tag.
 
 Note: [b]OGG[/b] format files are assumed to be video if the extension is [b]OGV[/b].  Detection has yet to be improved upon for determining the difference between audio and video OGG-formatted files.
 
@@ -15,6 +15,9 @@ Note: [b]OGG[/b] format files are assumed to be video if the extension is [b]OGV
 In [b]Admin[/b] -> [b]Forum[/b] -> [b]Attachments and Avatars[/b] -> [b]Attachment Settings[/b], there are two new options:
 o Width of Audio Player element
 o Width of Video Player element
+
+[color=blue][b][size=12pt][u]Inspiration & Credit[/u][/size][/b][/color]
+The Javascript code used was copied and adapted from this webpage: [url=http://mxii.eu.org/2017/09/07/javascript-spoiler-with-a-twist-collapsing-up-or-down/]JavaScript spoiler with a twist (collapsing up or down)[/url]
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
 This mod was tested on SMF 2.0.14, but should work on SMF 2.0 and up, as well as SMF 2.1 Beta 3.  SMF 2.1 Beta 2 and SMF 1.x will not be supported.
@@ -25,7 +28,7 @@ This mod was tested on SMF 2.0.14, but should work on SMF 2.0 and up, as well as
 The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=686.msg1024#msg1024]XPtsp.com[/url].
 
 [color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
-[quote]Copyright (c) 2016 - 2017, Douglas Orend
+[quote]Copyright (c) 2016 - 2018, Douglas Orend
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

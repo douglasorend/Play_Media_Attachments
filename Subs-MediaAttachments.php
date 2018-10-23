@@ -20,7 +20,7 @@ function PMAt_ValidMediaTypes()
 function PMAt_CreateAttachment(&$attachmentOptions)
 {
 	global $sourcedir;
-	if (empty($attachmentOptions['mime_type']) && in_array($attachmentOptions['fileext'], PMAt_ValidMediaTypes()) && empty($attachmentOptions['width']))
+	if ($attachmentOptions['fileext'] == 'mov' || (empty($attachmentOptions['mime_type']) && in_array($attachmentOptions['fileext'], PMAt_ValidMediaTypes()) && empty($attachmentOptions['width'])))
 	{
 		$temp_mime = PMAt_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['fileext'], $attachmentOptions['name']);
 		if (!empty($temp_mime))
@@ -50,6 +50,14 @@ function PMAt_mime_type($filename, $ext, $original = false)
 		/*  mp4  */ "4|\x66\x74\x79\x70\x69\x73\x6F\x6D" => 'video/mp4',
 		/*  m4v  */ "4|\x66\x74\x79\x70\x6D\x70\x34\x32" => 'video/mp4',
 		/*  webm */ "0|\x1A\x45\xDF\xA3" => 'video/webm',
+	// QuickTime movie file signatures:
+		/*  mov  */ "4|\x6D\x6F\x6F\x76" => 'video/quicktime',
+		/*  mov  */ "4|\x66\x72\x65\x65" => 'video/quicktime',
+		/*  mov  */ "4|\x6D\x64\x61\x74" => 'video/quicktime',
+		/*  mov  */ "4|\x77\x69\x64\x65" => 'video/quicktime',
+		/*  mov  */ "4|\x79\x6E\x6F\x74" => 'video/quicktime',
+		/*  mov  */ "4|\x73\x6B\x69\x70" => 'video/quicktime',
+		/*  mov  */ "4|\x66\x74\x79\x70" => 'video/quicktime',
 	// Audio/Video file signature (could be either):
 		/*  ogg  */ "0|\x4F\x67\x67\x53" => 'audio/ogg',
 		/* wma/v */ "0|\x30\x26\xB2\x75\x8E\x66\xCF\x11" => 'audio/wma',

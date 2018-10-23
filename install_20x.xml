@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>2.2</version>
+<version>2.4</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -140,7 +140,7 @@
 				{
 					echo '
 										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
-											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<source src="', $attachment['href'], '"' . ($attachment['mime_type'] != 'video/quicktime' ? ' type="' . $attachment['mime_type'] . '"' : '') . '>
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
 											', $txt['PMA_no_video'], '
 										</video><br />';
@@ -185,7 +185,7 @@
 				{
 					echo '
 										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
-											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<source src="', $attachment['href'], '"' . ($attachment['mime_type'] != 'video/quicktime' ? ' type="' . $attachment['mime_type'] . '"' : '') . '>
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
 											', $txt['PMA_no_video'], '
 										</video><br />';
