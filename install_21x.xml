@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.7</version>
+<version>1.8</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -62,7 +62,7 @@
 <file name="$themedir/Display.template.php">
 	<!-- template_main function -->
 	<operation>
-		<search position="after"><![CDATA[if ($attachment['is_image'])]]></search>
+		<search position="after"><![CDATA[if ($attachment['is_image']]]></search>
 		<add><![CDATA[if (!empty($attachment['is_audio']))
 				{
 					echo '

@@ -1,3 +1,6 @@
+v1.8 - July 8th, 2017
+o Fixed incorrect operation in [b]Display.template.php[/b].
+
 v1.7 - July 6th, 2017
 o Added support for SMF 2.1 Beta 3.
 o Removed support for SMF 2.1 Beta 2.
