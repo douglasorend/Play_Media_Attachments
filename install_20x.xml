@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>2.1</version>
+<version>2.2</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -34,9 +34,18 @@
 		<search position="after"><![CDATA[// Does this have a mime type?]]></search>
 		<add><![CDATA[// Is this an supported audio or video file?
 	elseif (!empty($mime_type) && (strpos($mime_type, 'audio/') !== false || strpos($mime_type, 'video/') !== false))
+	{
 		header('Content-Type: ' . $mime_type);
+		header('Content-Length: ' . ($filesize = filesize($filename)));
+		header('Content-Range: bytes 0-' . ($filesize - 1) . '/' . $filesize);
+		$_REQUEST['video'] = true;
+	}
 	
 	]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[if (empty($modSettings['enableCompressedOutput']) || filesize($filename) > 4194304)]]></search>
+		<add><![CDATA[if (!isset($_REQUEST['video']) && (empty($modSettings['enableCompressedOutput']) || filesize($filename) > 4194304))]]></add>
 	</operation>
 </file>
 <file name="$sourcedir/ManageAttachments.php">
@@ -91,7 +100,10 @@
 	]]></search>
 		<add><![CDATA[// Is this an supported audio or video file?
 	if (!empty($mime_type) && (strpos($mime_type, 'audio/') !== false || strpos($mime_type, 'video/') !== false))
-		header('Content-Type: ' . $mime_type);
+	{
+		require_once($sourcedir . '/Subs-MediaAttachments.php');
+		PMAt_Ranged_Download($filename, $mime_type);
+	}
 	
 	// Does this have a mime type?
 	else]]></add>
@@ -121,7 +133,7 @@
 										<audio controls="controls" ' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;"' : '') .'>
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
-											', $txt['PMAt_no_audio'], '
+											', $txt['PMA_no_audio'], '
 										</audio><br />';
 				}
 				if (!empty($attachment['is_video']))
@@ -130,7 +142,7 @@
 										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
-											', $txt['PMAt_no_video'], '
+											', $txt['PMA_no_video'], '
 										</video><br />';
 				}
 
@@ -166,7 +178,7 @@
 										<audio controls="controls" ' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;"' : '') .'>
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
-											', $txt['PMAt_no_audio'], '
+											', $txt['PMA_no_audio'], '
 										</audio><br />';
 				}
 				if (!empty($attachment['is_video']))
@@ -175,7 +187,7 @@
 										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
-											', $txt['PMAt_no_video'], '
+											', $txt['PMA_no_video'], '
 										</video><br />';
 				}
 

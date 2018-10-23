@@ -1,3 +1,6 @@
+v2.2 - December 8th, 2017
+o Fixed several undefined element/variable errors in the mod.
+
 v2.1 - September 10th, 2017
 o Fixed expired session error upon mod install.
 o Added file signatures and mime types for WMA, WMV and AAC files.

@@ -3,11 +3,18 @@ xml version="1.0"?>
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>2.1</version>
+<version>2.2</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
 <!-------------------------------------------------------------------------->
+<file name="$boarddir/index.php">
+	<operation>
+		<search position="replace"><![CDATA['dlattach' => array('Display.php', 'Download'),]]></search>
+		<add><![CDATA[
+		'dlranged' => array('Subs-MediaAttachments.php', 'PMAt_Download'),]]></add>
+	</operation>
+</file>
 <file name="$sourcedir/Display.php">
 	<!-- Display function -->
 	<operation>
@@ -95,7 +102,7 @@ xml version="1.0"?>
 				{
 					echo '
 										<audio controls="controls" ' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;"' : '') .'>
-											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<source src="', str_replace('action=dlattach', 'action=dlranged', $attachment['href']), '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
 											', $txt['PMA_no_audio'], '
 										</audio><br />';
@@ -104,7 +111,7 @@ xml version="1.0"?>
 				{
 					echo '
 										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
-											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<source src="', str_replace('action=dlattach', 'action=dlranged', $attachment['href']), '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
 											', $txt['PMA_no_video'], '
 										</video><br />';
@@ -136,18 +143,18 @@ xml version="1.0"?>
 				{
 					echo '
 										<audio controls="controls" ' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;"' : '') .'>
-											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<source src="', str_replace('action=dlattach', 'action=dlranged', $attachment['href']), '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
-											', $txt['PMAt_no_audio'], '
+											', $txt['PMA_no_audio'], '
 										</audio><br />';
 				}
 				if (!empty($attachment['is_video']))
 				{
 					echo '
 										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
-											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<source src="', str_replace('action=dlattach', 'action=dlranged', $attachment['href']), '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
-											', $txt['PMAt_no_video'], '
+											', $txt['PMA_no_video'], '
 										</video><br />';
 				}
 

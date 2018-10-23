@@ -115,7 +115,7 @@ function PMAt_Redetect2($both = true)
 	// We need to find all audio and videos files as attachments and mark them as such:
 	$table = ($_REQUEST['sa'] == 'p_redetect' ? 'pm_attachments' : 'attachments');
 	$request = $smcFunc['db_query']('', '
-		SELECT 
+		SELECT
 			filename, id_attach, id_folder, file_hash, fileext, mime_type
 		FROM {db_prefix}' . $table . '
 		WHERE fileext IN ({array_string:extensions})',
@@ -125,7 +125,7 @@ function PMAt_Redetect2($both = true)
 	);
 	while ($row = $smcFunc['db_fetch_assoc']($request))
 	{
-		$mime = PMAt_mime_type(getAttachmentFilename($row['filename'], $row['id_attach'], $row['id_folder'], false, $row['file_hash']), $row['fileexit'], $row['filename']);
+		$mime = PMAt_mime_type(getAttachmentFilename($row['filename'], $row['id_attach'], $row['id_folder'], false, $row['file_hash']), $row['fileext'], $row['filename']);
 		if (!empty($mime))
 			$smcFunc['db_query']('', '
 				UPDATE {db_prefix}' . $table . '
