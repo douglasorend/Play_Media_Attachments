@@ -1,3 +1,6 @@
+v1.6 - March 19th, 2017
+o Attempted thumbnail generation fix when no audio/video MIME type present.
+
 v1.5 - February 23rd, 2017
 o Added fallback audio player as an embed to the mod.
 

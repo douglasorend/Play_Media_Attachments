@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.5</version>
+<version>1.6</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -24,9 +24,9 @@
 	<operation>
 		<search position="before"><![CDATA['is_approved' => $attachment['approved'],]]></search>
 		<add><![CDATA[
-				'is_audio' => strpos($attachment['mime_type'], 'audio/') !== false,
-				'is_video' => strpos($attachment['mime_type'], 'video/') !== false,
-				'mime_type' => $attachment['mime_type'],]]></add>
+				'is_audio' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'audio/') !== false,
+				'is_video' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'video/') !== false,
+				'mime_type' => !empty($attachment['mime_type']) ? $attachment['mime_type'] : false,]]></add>
 	</operation>
 	
 	<!-- Download function -->
@@ -47,7 +47,9 @@
 	if (empty($attachmentOptions['mime_type']) && empty($attachmentOptions['width']))
 	{
 		require_once($sourcedir . '/Subs-MediaAttachments.php');
-		$attachmentOptions['mime_type'] = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
+		$temp_mime = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
+		if (!empty($temp_mime))
+			$attachmentOptions['mime_type'] = $temp_mime;
 	}
 
 	]]></add>
