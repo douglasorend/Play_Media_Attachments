@@ -1,3 +1,6 @@
+v1.5 - February 23rd, 2017
+o Added fallback audio player as an embed to the mod.
+
 v1.4 - February 21st, 2017
 o Fixed invalid array index error in [b]Sources/Display.php[/b].
 
