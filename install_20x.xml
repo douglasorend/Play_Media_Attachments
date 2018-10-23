@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.11</version>
+<version>2.0</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -40,28 +40,71 @@
 	</operation>
 </file>
 <file name="$sourcedir/ManageAttachments.php">
+	<!-- ManageAttachments function -->
 	<operation>
-		<search position="before"><![CDATA[array('text', 'attachmentThumbHeight', 6),
-	);]]></search>
+		<search position="before"><![CDATA[global $txt, $modSettings, $scripturl, $context, $options]]></search>
+		<add><![CDATA[, $sourcedir]]></add>
+	</operation>
+	<operation>
+		<search position="after"><![CDATA[
+
+	// Pick the correct sub-action.]]></search>
 		<add><![CDATA[
-	require_once($sourcedir . '/Subs-MediaAttachments.php');
-	PMA_settings($config_vars);]]></add>
+	PMAt_Attach_Actions($subActions);]]></add>
+	</operation>
+
+	<!-- ManageAttachmentSettings function -->
+	<operation>
+		<search position="after"><![CDATA[
+
+	if ($return_config)
+		return $config_vars;]]></search>
+		<add><![CDATA[
+	PMAt_settings($config_vars);]]></add>
+	</operation>
+</file>
+<file name="$sourcedir/PersonalMessage.php">
+	<!-- Display function -->
+	<operation error="ignore">
+		<search position="after"><![CDATA[pa.width, pa.height]]></search>
+		<add><![CDATA[pa.mime_type, ]]></add>
+	</operation>
+</file>
+<file name="$sourcedir/Subs-PMAttachments.php" error="skip">
+	<!-- loadPMAttachmentContext function -->
+	<operation error="ignore">
+		<search position="after"><![CDATA[$attachmentData[$i] = array(]]></search>
+		<add><![CDATA[$attachment['mime_type'] = !isset($attachment['mime_type']) ? '' : $attachment['mime_type'];
+			]]></add>
+	</operation>
+	<operation error="ignore">
+		<search position="before"><![CDATA['is_image' => !empty($attachment['width']) && !empty($attachment['height']) && !empty($modSettings['pmAttachmentShowImages']),]]></search>
+		<add><![CDATA[
+				'is_audio' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'audio/') !== false,
+				'is_video' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'video/') !== false,
+				'mime_type' => !empty($attachment['mime_type']) ? $attachment['mime_type'] : false,]]></add>
+	</operation>
+
+	<!-- PMDownload function -->
+	<operation error="ignore">
+		<search position="replace"><![CDATA[// Does this have a mime type?
+	]]></search>
+		<add><![CDATA[// Is this an supported audio or video file?
+	if (!empty($mime_type) && (strpos($mime_type, 'audio/') !== false || strpos($mime_type, 'video/') !== false))
+		header('Content-Type: ' . $mime_type);
+	
+	// Does this have a mime type?
+	else]]></add>
 	</operation>
 </file>
 <file name="$sourcedir/Subs-Post.php">
 	<!-- createAttachment function -->
 	<operation>
-		<search position="after"><![CDATA[// It is possible we might have a MIME type that isn't actually an image but still have a size.]]></search>
-		<add><![CDATA[// Check to see if it is a audio or video file:
-	if (empty($attachmentOptions['mime_type']) && empty($attachmentOptions['width']))
-	{
-		require_once($sourcedir . '/Subs-MediaAttachments.php');
-		$temp_mime = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
-		if (!empty($temp_mime))
-			$attachmentOptions['mime_type'] = $temp_mime;
-	}
-
-	]]></add>
+		<search position="before"><![CDATA[$attachmentOptions['fileext'] = '';
+	}]]></search>
+		<add><![CDATA[
+	require_once($sourcedir . '/Subs-MediaAttachments.php');
+	PMAt_CreateAttachment($attachmentOptions);]]></add>
 	</operation>
 </file>
 
@@ -78,20 +121,84 @@
 										<audio controls="controls" ' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;"' : '') .'>
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
-											', $txt['PMA_no_audio'], '
+											', $txt['PMAt_no_audio'], '
 										</audio><br />';
 				}
 				if (!empty($attachment['is_video']))
 				{
 					echo '
-										<video controls="controls" ' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
+										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
 											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
-											', $txt['PMA_no_video'], '
+											', $txt['PMAt_no_video'], '
 										</video><br />';
 				}
 
 				]]></add>
+	</operation>
+</file>
+<file name="$themedir/ManageAttachments.template.php">
+	<operation>
+		<search position="after"><![CDATA[<h3 class="catbg">', $txt['attachment_pruning'], '</h3>]]></search>
+		<add><![CDATA[<h3 class="catbg">', $txt['attachment_redetect_mime'], '</h3>
+		</div>
+		<div class="windowbg">
+			<span class="topslice"><span></span></span>
+			<div class="content">
+				<form action="', $scripturl, '?action=admin;area=manageattachments;sa=r_redetect;', $context['session_var'], '=', $context['session_id'], '" method="post" accept-charset="', $context['character_set'], '">
+					<p>', $txt['attachment_redetect_mime_desc'], '</p>
+					<input type="submit" name="submit" value="', $txt['maintain_run_now'], '" class="button_submit" />
+				</form>
+			</div>
+			<span class="botslice"><span></span></span>
+		</div>
+		<div class="cat_bar">
+			]]></add>
+	</operation>
+</file>
+<file name="$themedir/PersonalMessage.template.php">
+	<!-- template_main function -->
+	<operation error="ignore">
+		<search position="after"><![CDATA[if ($attachment['is_image']]]></search>
+		<add><![CDATA[if (!empty($attachment['is_audio']))
+				{
+					echo '
+										<audio controls="controls" ' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;"' : '') .'>
+											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
+											', $txt['PMAt_no_audio'], '
+										</audio><br />';
+				}
+				if (!empty($attachment['is_video']))
+				{
+					echo '
+										<video controls="controls" ' . (!empty($modSettings['attachmentVideoPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;"' : '') .'>
+											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
+											', $txt['PMAt_no_video'], '
+										</video><br />';
+				}
+
+				]]></add>
+	</operation>
+</file>
+<file name="$themedir/PMAttachmentsAdmin.template.php" error="skip">
+	<operation>
+		<search position="after"><![CDATA[<h3 class="catbg"><span class="left"></span>', $txt['pmattachment_options'], '</h3>]]></search>
+		<add><![CDATA[<h3 class="catbg">', $txt['attachment_redetect_mime'], '</h3>
+		</div>
+		<div class="windowbg">
+			<span class="topslice"><span></span></span>
+			<div class="content">
+				<form action="', $scripturl, '?action=admin;area=manageattachments;sa=p_redetect;', $context['session_var'], '=', $context['session_id'], '" method="post" accept-charset="', $context['character_set'], '">
+					<p>', $txt['attachment_redetect_mime_desc'], '</p>
+					<input type="submit" name="submit" value="', $txt['maintain_run_now'], '" class="button_submit" />
+				</form>
+			</div>
+			<span class="botslice"><span></span></span>
+		</div>
+		<div class="cat_bar">
+			]]></add>
 	</operation>
 </file>
 </modification>

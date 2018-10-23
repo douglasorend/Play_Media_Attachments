@@ -24,7 +24,9 @@ db_extend('packages');
 $hook_functions = array(
 // SMF 2.1+ stuff (emulated for SMF 2.0.x):
 	'integrate_admin_include' => '$sourcedir/Subs-MediaAttachments.php',
-	'integrate_modify_attachment_settings' => 'PMA_settings',
+	'integrate_modify_attachment_settings' => 'PMAt_settings',
+	'integrate_manage_attachments' => 'PMAt_Attach_Actions',
+	'integrate_createAttachment' => 'PMAt_CreateAttachment',
 );
 
 // Adding or removing them?

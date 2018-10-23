@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.11</version>
+<version>2.0</version>
 
 <file name="$languagedir/index.english.php">
 	<operation>
@@ -13,6 +13,8 @@ $txt['PMA_no_audio'] = 'Your browser does not support the audio element.';
 $txt['PMA_no_video'] = 'Your browser does not support the video element.';
 $txt['attachmentAudioPlayerWidth'] = 'Width of Audio Player element<div class="smalltext">NOTE: Set to <strong>0</strong> for browser default</div>';
 $txt['attachmentVideoPlayerWidth'] = 'Width of Video Player element<div class="smalltext">NOTE: Set to <strong>0</strong> for browser default</div>';
+$txt['attachment_redetect_mime'] = 'MIME Redetection';
+$txt['attachment_redetect_mime_desc'] = 'This function will redetect the MIME types on all detectable audio and video files stored in the attachments folder.';
 ]]></add>
 	</operation>
 </file>

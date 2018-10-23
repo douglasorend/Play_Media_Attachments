@@ -1,3 +1,9 @@
+v2.0 - September 8th, 2017
+o Added support for the PM Attachments mod.
+o Fixed variable type-casting error in [b]Subs-MediaAttachments.php[/b].
+o Added stuff to redetect MIME types in Attachment File Maintanence area.
+o Added code to restrict additional MIME testing to audio/video files.
+
 v1.11.1 - September 6th, 2017
 o Fixed stupid typo in [b]Subs-MediaAttachments.php[/b].
 
