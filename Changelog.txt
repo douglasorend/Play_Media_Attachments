@@ -1,3 +1,6 @@
+v1.4 - February 21st, 2017
+o Fixed invalid array index error in [b]Sources/Display.php[/b].
+
 v1.3 - January 7th, 2017
 o Fixed MIME detection for MP3 files.
 

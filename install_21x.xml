@@ -17,6 +17,11 @@
 	
 	<!-- loadAttachmentContext function -->
 	<operation>
+		<search position="after"><![CDATA[$attachmentData[$i] = array(]]></search>
+		<add><![CDATA[$attachment['mime_type'] = !isset($attachment['mime_type']) ? '' : $attachment['mime_type'];
+			]]></add>
+	</operation>
+	<operation>
 		<search position="before"><![CDATA['is_approved' => $attachment['approved'],]]></search>
 		<add><![CDATA[
 				'is_audio' => strpos($attachment['mime_type'], 'audio/') !== false,
