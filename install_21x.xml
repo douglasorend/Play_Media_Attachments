@@ -34,17 +34,17 @@
 	]]></add>
 	</operation>
 </file>
-<file name="$sourcedir/Subs-Post.php">
+<file name="$sourcedir/Subs-Attachments.php">
 	<!-- createAttachment function -->
 	<operation>
 		<search position="before"><![CDATA[$attachmentOptions['mime_type'] = 'image/' . $validImageTypes[$size[2]];
-		}]]></search>
+	}]]></search>
 		<add><![CDATA[
-		else
-		{
-			require_once($sourcedir . '/Subs-MediaAttachments.php');
-			$attachmentOptions['mime_type'] = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
-		}]]></add>
+	else
+	{
+		require_once($sourcedir . '/Subs-MediaAttachments.php');
+		$attachmentOptions['mime_type'] = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
+	}]]></add>
 	</operation>
 </file>
 

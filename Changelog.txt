@@ -1,2 +1,6 @@
+v1.1 - December 31st, 2016
+o Changed text string in the [b]<audio>[/b] tag to localizable string.
+o Added support for SMF 2.1 Beta 2.
+
 v1.0 - December 7th, 2016
 o Initial release to the public
