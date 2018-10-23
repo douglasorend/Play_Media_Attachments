@@ -1,23 +1,20 @@
 [hr]
-[center][color=red][size=16pt][b]PLAY MEDIA IN HEADER v1.0[/b][/size][/color]
-[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4132]Link to Mod[/url]
+[center][color=red][size=16pt][b]PLAY MEDIA ATTACHMENTS v1.0[/b][/size][/color]
+[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4131]Link to Mod[/url]
 [/center]
 [hr]
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
-This mod adds the ability to start playing a MP3, WAV or OGG file in the background automatically using the HTML5 audio tag.
+This mod allows a MP3, WAV or OGG file that has been attached to a post to be played without manually downloading the attachment using the HTML5 audio tag.
 
 [color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
-3 new settings are available in [b]Admin[/b] => [b]Configuration[/b] => [b]Features and Options[/b] => [b]General[/b]:
-o Enable playing background music?
-o URL to audio file to play
-o Supported media file to report to browser
+There are no admin settings at this time.  To disable, you must uninstall this mod.
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was tested on SMF 2.0.12, but should work on any version of SMF 2.0.x.  SMF 1.x and SMF 2.1 is not and will not be supported.
+This mod was tested on SMF 2.0.12, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.  
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
-The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=733.msg1176#msg1176]XPtsp.com[/url].
+The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=686.msg1024#msg1024]XPtsp.com[/url].
 
 [color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
 Copyright (c) 2016, Douglas Orend

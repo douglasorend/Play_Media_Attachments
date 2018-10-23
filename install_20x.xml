@@ -1,30 +1,70 @@
 <?xml version="1.0"?>
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
-<id>dougiefresh:PMIH</id>
-<name>Play Media In Header</name>
+<id>Dougiefresh:PlayAttachments</id>
+<name>Play Media Attachment</name>
 <version>1.0</version>
 
-<file name="$sourcedir/ManageSettings.php">
+<!-------------------------------------------------------------------------->
+<!-- Source file changes                                                  -->
+<!-------------------------------------------------------------------------->
+<file name="$sourcedir/Display.php">
+	<!-- Display function -->
 	<operation>
-		<search position="before"><![CDATA[array('check', 'disallow_sendBody'),]]></search>
+		<search position="after"><![CDATA[a.width, a.height]]></search>
+		<add><![CDATA[a.mime_type, ]]></add>
+	</operation>
+	
+	<!-- loadAttachmentContext function -->
+	<operation>
+		<search position="before"><![CDATA['is_approved' => $attachment['approved'],]]></search>
 		<add><![CDATA[
-		'',
-			array('check', 'PMIH_enabled'),
-			array('text', 'PMIH_audio_file', 40),
-			array('select', 'PMIH_audio_type', array('audio/mpeg' => 'MP3 (audio/mpeg)', 'audio/wav' => 'WAV (audio/wav)', 'audio/ogg' => 'OGG (audio/ogg)')),]]></add>
+				'is_audio' => strpos($attachment['mime_type'], 'audio/') !== false,
+				'is_video' => strpos($attachment['mime_type'], 'video/') !== false,
+				'mime_type' => $attachment['mime_type'],]]></add>
+	</operation>
+	
+	<!-- Download function -->
+	<operation>
+		<search position="after"><![CDATA[// Does this have a mime type?]]></search>
+		<add><![CDATA[// Is this an supported audio or video file?
+	elseif (!empty($mime_type) && (strpos($mime_type, 'audio/') !== false || strpos($mime_type, 'video/') !== false))
+		header('Content-Type: ' . $mime_type);
+	
+	]]></add>
 	</operation>
 </file>
-<file name="$themedir/index.template.php">
+<file name="$sourcedir/Subs-Post.php">
+	<!-- createAttachment function -->
 	<operation>
-		<search position="before"><![CDATA[<p>', $context['random_news_line'], '</p>';
+		<search position="before"><![CDATA[$attachmentOptions['mime_type'] = 'image/' . $validImageTypes[$size[2]];
+		}]]></search>
+		<add><![CDATA[
+		else
+		{
+			require_once($sourcedir . '/Subs-MediaAttachments.php');
+			$attachmentOptions['mime_type'] = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
+		}]]></add>
+	</operation>
+</file>
 
-	echo ]]></search>
-		<add><![CDATA[(!empty($modSettings['PMIH_enabled']) && !empty($modSettings['PMIH_audio_file']) && !empty($modSettings['PMIH_audio_type']) ? '
-				<br /><br />
-				<audio controls="controls" autoplay="autoplay">
-					<source src="' . $modSettings['PMIH_audio_file'] . '" type="' . $modSettings['PMIH_audio_type'] . '">
-				</audio>' : '') . ]]></add>
+<!-------------------------------------------------------------------------->
+<!-- Template changes                                                     -->
+<!-------------------------------------------------------------------------->
+<file name="$themedir/Display.template.php">
+	<!-- template_main function -->
+	<operation>
+		<search position="after"><![CDATA[if ($attachment['is_image'])]]></search>
+		<add><![CDATA[if (!empty($attachment['is_audio']))
+				{
+					echo '
+										<audio controls>
+											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											Your browser does not support the audio element.
+										</audio><br />';
+				}
+
+				]]></add>
 	</operation>
 </file>
 </modification>

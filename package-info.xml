@@ -1,19 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
-	<id>dougiefresh:PMIH</id>
-	<name>Play Media In Header</name>
-	<version>1.0</version>
+	<id>Dougiefresh:PlayAttachments</id>
+	<name>Play Media Attachment</name>
 	<type>modification</type>
+	<version>1.0</version>
 
 	<install for="2.0 - 2.0.99">
-		<readme type="file" parsebbc="true">readme.txt</readme>
+		<readme parsebbc="true">readme.txt</readme>
+		<code>mod_settings.php</code>
 		<modification>install_20x.xml</modification>
-		<modification>language_english.xml</modification>
-		<redirect timeout="5000" url="?action=admin;area=featuresettings;sa=layout" />
+		<require-file name="Subs-MediaAttachments.php" destination="$sourcedir" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
 		<modification reverse="true">install_20x.xml</modification>
-		<modification reverse="true">language_english.xml</modification>
+		<remove-file name="$sourcedir/Subs-MediaAttachments.php" />
 	</uninstall>
 </package-info>
