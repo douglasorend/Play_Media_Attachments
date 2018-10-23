@@ -1,3 +1,6 @@
+v1.3 - January 7th, 2017
+o Fixed MIME detection for MP3 files.
+
 v1.2 - January 4th, 2016
 o Changed code so that audio/video MIME detection takes place if no MIME type detected.
 
