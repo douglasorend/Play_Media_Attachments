@@ -1,3 +1,6 @@
+v2.0.1 - September 9th, 2017
+o Fixed another stupid typo in [b]Subs-MediaAttachments.php[/b].
+
 v2.0 - September 8th, 2017
 o Added support for the PM Attachments mod.
 o Fixed variable type-casting error in [b]Subs-MediaAttachments.php[/b].

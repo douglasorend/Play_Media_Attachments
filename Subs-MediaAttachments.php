@@ -22,7 +22,7 @@ function PMAt_CreateAttachment(&$attachmentOptions)
 	global $sourcedir;
 	if (empty($attachmentOptions['mime_type']) && in_array($attachmentOptions['fileext'], PMAt_ValidMediaTypes()) && empty($attachmentOptions['width']))
 	{
-		$temp_mime = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
+		$temp_mime = PMAt_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
 		if (!empty($temp_mime))
 			$attachmentOptions['mime_type'] = $temp_mime;
 	}
