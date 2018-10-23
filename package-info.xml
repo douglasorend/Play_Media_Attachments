@@ -5,14 +5,16 @@
 	<id>Dougiefresh:PlayAttachments</id>
 	<name>Play Media Attachment</name>
 	<type>modification</type>
-	<version>1.6</version>
+	<version>1.7</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
 		<code>mod_settings.php</code>
+		<code>add_remove_hooks.php</code>
 		<modification>install_20x.xml</modification>
 		<modification>language_english.xml</modification>
 		<require-file name="Subs-MediaAttachments.php" destination="$sourcedir" />
+		<redirect timeout="5000" url="?action=admin;area=manageattachments;sa=attachments" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
 		<modification reverse="true">install_20x.xml</modification>
@@ -20,14 +22,16 @@
 		<remove-file name="$sourcedir/Subs-MediaAttachments.php" />
 	</uninstall>
 
-	<install for="2.1 Beta 2">
+	<install for="2.1 Beta 3">
 		<readme parsebbc="true">readme.txt</readme>
 		<code>mod_settings.php</code>
+		<code>add_remove_hooks.php</code>
 		<modification>install_21x.xml</modification>
 		<modification>language_english.xml</modification>
 		<require-file name="Subs-MediaAttachments.php" destination="$sourcedir" />
+		<redirect timeout="5000" url="?action=admin;area=manageattachments;sa=attachments" />
 	</install>
-	<uninstall for="2.1 Beta 2">
+	<uninstall for="2.1 Beta 3">
 		<modification reverse="true">install_21x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
 		<remove-file name="$sourcedir/Subs-MediaAttachments.php" />

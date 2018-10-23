@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.6</version>
+<version>1.7</version>
 
 <file name="$languagedir/index.english.php">
 	<operation>
@@ -11,6 +11,7 @@
 		<add><![CDATA[
 $txt['PMA_no_audio'] = 'Your browser does not support the audio element.';
 $txt['PMA_no_video'] = 'Your browser does not support the video element.';
+$txt['attachmentAudioPlayerWidth'] = 'Width of Audio Player element<div class="smalltext">NOTE: Set to <strong>0</strong> for browser default</div>';
 ]]></add>
 	</operation>
 </file>

@@ -39,6 +39,15 @@
 	]]></add>
 	</operation>
 </file>
+<file name="$sourcedir/ManageAttachments.php">
+	<operation>
+		<search position="before"><![CDATA[array('text', 'attachmentThumbHeight', 6),
+	);]]></search>
+		<add><![CDATA[
+	require_once($sourcedir . '/Subs-MediaAttachments.php');
+	PMA_settings($config_vars);]]></add>
+	</operation>
+</file>
 <file name="$sourcedir/Subs-Post.php">
 	<!-- createAttachment function -->
 	<operation>
@@ -66,9 +75,9 @@
 		<add><![CDATA[if (!empty($attachment['is_audio']))
 				{
 					echo '
-										<audio controls="controls">
+										<audio controls="controls' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;">' : '') .'
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
-											<embed src="', $attachment['href'], '" width="300" height="90" loop="false" autostart="false">
+											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
 											', $txt['PMA_no_audio'], '
 										</audio><br />';
 				}

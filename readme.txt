@@ -13,7 +13,7 @@ As of [b]version 1.5[/b], a fallback audio player embed tag has been added in th
 There are no admin settings at this time.  To disable, you must uninstall this mod.
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was tested on SMF 2.0.13, but should work on SMF 2.0 and up, as well as SMF 2.1 Beta 2.  SMF 1.x is not and will not be supported.  
+This mod was tested on SMF 2.0.13, but should work on SMF 2.0 and up, as well as SMF 2.1 Beta 3.  SMF 2.1 Beta 2 and SMF 1.x will not be supported.  
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=686.msg1024#msg1024]XPtsp.com[/url].

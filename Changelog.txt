@@ -1,3 +1,8 @@
+v1.7 - July 6th, 2017
+o Added support for SMF 2.1 Beta 3.
+o Removed support for SMF 2.1 Beta 2.
+o Added admin setting to set the audio player width.
+
 v1.6 - March 19th, 2017
 o Attempted thumbnail generation fix when no audio/video MIME type present.
 

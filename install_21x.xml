@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.6</version>
+<version>1.7</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -13,20 +13,6 @@
 	<operation>
 		<search position="after"><![CDATA[a.width, a.height]]></search>
 		<add><![CDATA[a.mime_type, ]]></add>
-	</operation>
-	
-	<!-- loadAttachmentContext function -->
-	<operation>
-		<search position="after"><![CDATA[$attachmentData[$i] = array(]]></search>
-		<add><![CDATA[$attachment['mime_type'] = !isset($attachment['mime_type']) ? '' : $attachment['mime_type'];
-			]]></add>
-	</operation>
-	<operation>
-		<search position="before"><![CDATA['is_approved' => $attachment['approved'],]]></search>
-		<add><![CDATA[
-				'is_audio' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'audio/') !== false,
-				'is_video' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'video/') !== false,
-				'mime_type' => !empty($attachment['mime_type']) ? $attachment['mime_type'] : false,]]></add>
 	</operation>
 	
 	<!-- Download function -->
@@ -39,7 +25,7 @@
 	]]></add>
 	</operation>
 </file>
-<file name="$sourcedir/Subs-Attachments.php">
+<file name="$sourcedir/Subs-Attachments.php">	
 	<!-- createAttachment function -->
 	<operation>
 		<search position="after"><![CDATA[// It is possible we might have a MIME type that isn't actually an image but still have a size.]]></search>
@@ -54,6 +40,20 @@
 
 	]]></add>
 	</operation>
+
+	<!-- loadAttachmentContext function -->
+	<operation>
+		<search position="after"><![CDATA[$attachmentData[$i] = array(]]></search>
+		<add><![CDATA[$attachment['mime_type'] = !isset($attachment['mime_type']) ? '' : $attachment['mime_type'];
+			]]></add>
+	</operation>
+	<operation>
+		<search position="before"><![CDATA['is_approved' => $attachment['approved'],]]></search>
+		<add><![CDATA[
+				'is_audio' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'audio/') !== false,
+				'is_video' => !empty($attachment['mime_type']) && strpos($attachment['mime_type'], 'video/') !== false,
+				'mime_type' => !empty($attachment['mime_type']) ? $attachment['mime_type'] : false,]]></add>
+	</operation>
 </file>
 
 <!-------------------------------------------------------------------------->
@@ -66,9 +66,9 @@
 		<add><![CDATA[if (!empty($attachment['is_audio']))
 				{
 					echo '
-										<audio controls="controls">
+										<audio controls="controls' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentAudioPlayerWidth'] . 'px;">' : '') .'
 											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
-											<embed src="', $attachment['href'], '" width="300" height="90" loop="false" autostart="false">
+											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentAudioPlayerWidth'] : 300) . '" height="90" loop="false" autostart="false">
 											', $txt['PMA_no_audio'], '
 										</audio><br />';
 				}

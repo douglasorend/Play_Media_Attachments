@@ -9,6 +9,12 @@
 if (!defined('SMF'))
 	die('Hacking attempt...');
 
+function PMA_settings(&$config_vars)
+{
+	$config_vars[] = '';
+	$config_vars[] = array('text', 'attachmentAudioPlayerWidth', 6);
+}
+
 /*******************************************************************************/
 // Proper MIME detection for HTML5 audio/video files:
 // SOURCE: https://en.wikipedia.org/wiki/List_of_file_signatures
