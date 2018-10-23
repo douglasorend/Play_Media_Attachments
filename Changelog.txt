@@ -1,3 +1,9 @@
+v1.10 - August 2nd, 2017
+o Added code to display supported video clips stored as attachments.
+o Added video width option to settings.
+o Adjusted audio operation to use new audio width option.
+o Added audio width option to settings.
+
 v1.9 - July 11th, 2017
 o Fixed WAV audio file type detection code.
 

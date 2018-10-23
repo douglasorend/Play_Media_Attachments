@@ -12,7 +12,8 @@ if (!defined('SMF'))
 function PMA_settings(&$config_vars)
 {
 	$config_vars[] = '';
-	$config_vars[] = array('text', 'attachmentAudioPlayerWidth', 6);
+	$config_vars[] = array('int', 'attachmentAudioPlayerWidth', 6);
+	$config_vars[] = array('int', 'attachmentVideoPlayerWidth', 6);
 }
 
 /*******************************************************************************/

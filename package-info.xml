@@ -5,7 +5,7 @@
 	<id>Dougiefresh:PlayAttachments</id>
 	<name>Play Media Attachment</name>
 	<type>modification</type>
-	<version>1.9</version>
+	<version>1.10</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>

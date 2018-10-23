@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.9</version>
+<version>1.10</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -72,8 +72,32 @@
 											', $txt['PMA_no_audio'], '
 										</audio><br />';
 				}
+				if (!empty($attachment['is_video']))
+				{
+					echo '
+										<video controls="controls' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? ' style="width: ' . $modSettings['attachmentVideoPlayerWidth'] . 'px;">' : '') .'
+											<source src="', $attachment['href'], '" type="', $attachment['mime_type'], '">
+											<embed src="', $attachment['href'], '" width="' . (!empty($modSettings['attachmentAudioPlayerWidth']) ? $modSettings['attachmentVideoPlayerWidth'] : 300) . '" loop="false" autostart="false">
+											', $txt['PMA_no_video'], '
+										</video><br />';
+				}
 
 				]]></add>
 	</operation>
 </file>
 </modification>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
