@@ -22,7 +22,7 @@ $request = $smcFunc['db_query']('', '
 	FROM {db_prefix}attachments
 	WHERE fileext IN ({array_string:extensions})',
 	array(
-		'extensions' => array('mp3', 'wav', 'ogg', 'oga', 'mp4', 'ogv', 'webm'),
+		'extensions' => array('mp3', 'wav', 'ogg', 'oga', 'mp4', 'ogv', 'webm', 'm4a', 'm4v'),
 	)
 );
 while ($row = $smcFunc['db_fetch_assoc']($request))

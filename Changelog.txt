@@ -1,3 +1,6 @@
+v1.11.1 - September 6th, 2017
+o Fixed stupid typo in [b]Subs-MediaAttachments.php[/b].
+
 v1.11 - September 4th, 2017
 o Fixed HTML code that displays the attachment audio/video elements.
 o Updated file signature detection code to catch M4A and M4V files.

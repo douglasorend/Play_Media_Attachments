@@ -49,7 +49,7 @@ function PMA_mime_type($filename, $original = false)
 			list($mime, $start, $extra) = explode('|', $mime_type . '||');
 			if (substr($contents, $start, strlen($magic_bytes)) == $magic_bytes)
 			{
-				if (empty($mime) || substr($contents, $start, strlen($extra)) == $extra))
+				if (empty($mime) || substr($contents, $start, strlen($extra)) == $extra)
 					break;
 			}
 		}
