@@ -5,7 +5,7 @@
 	<id>Dougiefresh:PlayAttachments</id>
 	<name>Play Media Attachment</name>
 	<type>modification</type>
-	<version>2.2</version>
+	<version>2.3</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -13,12 +13,15 @@
 		<code>db_install.php</code>
 		<modification>install_20x.xml</modification>
 		<modification>language_english.xml</modification>
+		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Subs-MediaAttachments.php" destination="$sourcedir" />
 		<redirect timeout="5000" url="?action=admin;area=manageattachments;sa=b_redetect" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
+		<code>add_remove_hooks.php</code>
 		<modification reverse="true">install_20x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
+		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Subs-MediaAttachments.php" />
 	</uninstall>
 
@@ -28,12 +31,15 @@
 		<code>db_install.php</code>
 		<modification>install_21x.xml</modification>
 		<modification>language_english.xml</modification>
+		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Subs-MediaAttachments.php" destination="$sourcedir" />
 		<redirect timeout="5000" url="?action=admin;area=manageattachments;sa=b_redetect" />
 	</install>
 	<uninstall for="2.1 Beta 3">
+		<code>add_remove_hooks.php</code>
 		<modification reverse="true">install_21x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
+		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Subs-MediaAttachments.php" />
 	</uninstall>
 </package-info>

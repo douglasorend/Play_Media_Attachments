@@ -1,3 +1,7 @@
+v2.3 - December 15th, 2017
+o Added Spanish Latin translation, courtsey of [url=https://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee[/url]!
+o Added missing add/remove hooks entry for proper mod uninstallation.
+
 v2.2 - December 8th, 2017
 o Fixed several undefined element/variable errors in the mod.
 

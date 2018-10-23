@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:PlayAttachments</id>
+<name>Play Media Attachment</name>
+<version>2.2</version>
+
+<file name="$languagedir/index.spanish_latin.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['PMA_no_audio'] = 'Su navegador no admite el elemento de audio.';
+$txt['PMA_no_video'] = 'Su navegador no soporta el elemento de vídeo.';
+$txt['attachmentAudioPlayerWidth'] = 'Ancho del elemento reproductor de audio<div class="smalltext">NOTA: establecer en <strong>0</strong> para el navegador predeterminado</div>';
+$txt['attachmentVideoPlayerWidth'] = 'Ancho del elemento del reproductor de video<div class="smalltext">NOTA: establecer en <strong>0</strong> para el navegador predeterminado</div>';
+$txt['attachment_redetect_mime'] = 'Redetecci&oacute;n MIME';
+$txt['attachment_redetect_mime_desc'] = 'Esta funci&oacute;n redetectar&aacute; los tipos MIME en todos los archivos de audio y video detectables almacenados en la carpeta de archivos adjuntos.';
+]]></add>
+	</operation>
+</file>
+
+<file name="$languagedir/index.spanish_latin-utf8.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['PMA_no_audio'] = 'Su navegador no admite el elemento de audio.';
+$txt['PMA_no_video'] = 'Su navegador no soporta el elemento de vídeo.';
+$txt['attachmentAudioPlayerWidth'] = 'Ancho del elemento reproductor de audio<div class="smalltext">NOTA: establecer en <strong>0</strong> para el navegador predeterminado</div>';
+$txt['attachmentVideoPlayerWidth'] = 'Ancho del elemento del reproductor de video<div class="smalltext">NOTA: establecer en <strong>0</strong> para el navegador predeterminado</div>';
+$txt['attachment_redetect_mime'] = 'Redetección MIME';
+$txt['attachment_redetect_mime_desc'] = 'Esta función redetectará los tipos MIME en todos los archivos de audio y video detectables almacenados en la carpeta de archivos adjuntos.';
+]]></add>
+	</operation>
+</file>
+</modification>
