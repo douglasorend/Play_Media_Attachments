@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:PlayAttachments</id>
 <name>Play Media Attachment</name>
-<version>1.1</version>
+<version>1.2</version>
 
 <!-------------------------------------------------------------------------->
 <!-- Source file changes                                                  -->
@@ -37,14 +37,15 @@
 <file name="$sourcedir/Subs-Post.php">
 	<!-- createAttachment function -->
 	<operation>
-		<search position="before"><![CDATA[$attachmentOptions['mime_type'] = 'image/' . $validImageTypes[$size[2]];
-		}]]></search>
-		<add><![CDATA[
-		else
-		{
-			require_once($sourcedir . '/Subs-MediaAttachments.php');
-			$attachmentOptions['mime_type'] = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
-		}]]></add>
+		<search position="after"><![CDATA[// It is possible we might have a MIME type that isn't actually an image but still have a size.]]></search>
+		<add><![CDATA[// Check to see if it is a audio or video file:
+	if (empty($attachmentOptions['mime_type']) && empty($attachmentOptions['width']))
+	{
+		require_once($sourcedir . '/Subs-MediaAttachments.php');
+		$attachmentOptions['mime_type'] = PMA_mime_type($attachmentOptions['tmp_name'], $attachmentOptions['name']);
+	}
+
+	]]></add>
 	</operation>
 </file>
 

@@ -1,3 +1,6 @@
+v1.2 - January 4th, 2016
+o Changed code so that audio/video MIME detection takes place if no MIME type detected.
+
 v1.1 - December 31st, 2016
 o Changed text string in the [b]<audio>[/b] tag to localizable string.
 o Added support for SMF 2.1 Beta 2.
