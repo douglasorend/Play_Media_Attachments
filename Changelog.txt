@@ -1,3 +1,7 @@
+v1.11 - September 4th, 2017
+o Fixed HTML code that displays the attachment audio/video elements.
+o Updated file signature detection code to catch M4A and M4V files.
+
 v1.10 - August 2nd, 2017
 o Added code to display supported video clips stored as attachments.
 o Added video width option to settings.
